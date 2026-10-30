@@ -1,0 +1,26 @@
+{
+  "name": "cypress-mini-shop-submission",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend-only Cypress Mini Shop with parallel E2E specs and Mochawesome reporting",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "vite build",
+    "test:e2e": "node scripts/cypress-run.cjs run",
+    "test:parallel": "node scripts/clean-reports.cjs && concurrently --kill-others-on-fail --max-processes 2 --names auth,products,add-product,flaky-load \"node scripts/cypress-run.cjs run --spec cypress/e2e/auth/login.cy.js\" \"node scripts/cypress-run.cjs run --spec cypress/e2e/dashboard/products.cy.js\" \"node scripts/cypress-run.cjs run --spec cypress/e2e/dashboard/add-product.cy.js\" \"node scripts/cypress-run.cjs run --spec cypress/e2e/dashboard/flaky-load.cy.js\"",
+    "report:merge": "node scripts/generate-report.cjs",
+    "test:submission": "npm run test:parallel && npm run report:merge"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "10.0.6",
+    "cypress": "15.21.1",
+    "mochawesome": "8.1.1",
+    "mochawesome-merge": "5.1.1",
+    "mochawesome-report-generator": "6.3.2",
+    "vite": "8.3.5"
+  }
+}

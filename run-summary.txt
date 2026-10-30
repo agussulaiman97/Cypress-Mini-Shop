@@ -1,0 +1,7 @@
+Cypress Mini Shop test run summary
+Specs: 4
+Tests: 7
+Passed: 7
+Failed: 0
+Pending: 0
+Report: cypress/reports/mochawesome-report.html
